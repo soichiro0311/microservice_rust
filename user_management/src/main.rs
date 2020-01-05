@@ -6,23 +6,21 @@ use rocket_contrib::json::Json;
 #[macro_use]
 extern crate rocket;
 
-mod user;
-mod user_controller;
-mod user_service;
-mod user_repository;
+mod service;
+mod repository;
+mod controller;
+mod dto;
+mod model;
+mod schema;
 
-use user::*;
-use user_controller::*;
-use user_service::*;
-use user_repository::*;
+use model::*;
+use controller::*;
+use service::*;
+use repository::*;
 
 #[macro_use]
 extern crate diesel;
 extern crate dotenv;
-
-pub mod models;
-pub mod schemas;
-
 
 #[post("/user/add", data = "<user>")]
 fn user_add(user: Json<User>) {

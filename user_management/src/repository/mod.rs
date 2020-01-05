@@ -2,9 +2,9 @@ use diesel::prelude::*;
 use diesel::pg::PgConnection;
 use dotenv::dotenv;
 use std::env;
-use crate::user::*;
-use crate::schemas::user_infos::dsl::*;
-use crate::models::*;
+use crate::model::*;
+use crate::schema::user_infos::dsl::*;
+use crate::dto::*;
 
 pub struct UserRepository{
     connection: PgConnection

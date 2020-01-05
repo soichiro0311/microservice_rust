@@ -1,5 +1,5 @@
-use crate::user::*;
-use crate::user_service::*;
+use crate::model::*;
+use crate::service::*;
 use rocket_contrib::json::Json;
 
 pub struct UserController {

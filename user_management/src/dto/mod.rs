@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
-use super::schemas::*;
-use crate::user::*;
+use super::schema::*;
+use crate::model::*;
 
 #[derive(Debug, Serialize, Deserialize,Queryable,Insertable)]
 pub struct UserInfo {
