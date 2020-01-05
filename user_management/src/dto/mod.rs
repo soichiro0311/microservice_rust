@@ -1,6 +1,5 @@
 use serde::{Deserialize, Serialize};
 use super::schema::*;
-use crate::model::*;
 
 #[derive(Debug, Serialize, Deserialize,Queryable,Insertable)]
 pub struct UserInfo {
@@ -9,7 +8,20 @@ pub struct UserInfo {
     pub logined_flg: bool,
 }
 
-pub fn build_user_info(user: &User) -> UserInfo{
+#[derive(Debug, Serialize, Deserialize,Queryable)]
+pub struct UserDto {
+    pub request_user_id: String,
+    pub userid: String,
+    pub password: String,
+}
+
+impl UserDto {
+    pub fn get_request_user_id(&self) -> &String{
+        &self.request_user_id
+    }
+}
+
+pub fn build_user_info(user: &UserDto) -> UserInfo{
     UserInfo{
         user_id: user.userid.to_string(),
         password: user.password.to_string(),

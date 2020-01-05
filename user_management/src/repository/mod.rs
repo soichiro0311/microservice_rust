@@ -2,7 +2,6 @@ use diesel::prelude::*;
 use diesel::pg::PgConnection;
 use dotenv::dotenv;
 use std::env;
-use crate::model::*;
 use crate::schema::user_infos::dsl::*;
 use crate::dto::*;
 
@@ -18,9 +17,13 @@ pub fn build_user_repository() -> UserRepository{
 }
 
 impl UserRepository {
-    pub fn add_user(&self,new: User){
+    pub fn add_user(&self,new: UserDto){
         let new_info: UserInfo = build_user_info(&new);
         diesel::insert_into(user_infos).values(&new_info).execute(&self.connection).expect("Error saving new user.");
+    }
+
+    pub fn find_by_id(&self,target_id: &String) -> UserInfo{
+        user_infos.find(target_id).first::<UserInfo>(&self.connection).expect("Error find user.")
     }
 }
 

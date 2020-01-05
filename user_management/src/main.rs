@@ -10,20 +10,19 @@ mod service;
 mod repository;
 mod controller;
 mod dto;
-mod model;
 mod schema;
 
-use model::*;
 use controller::*;
 use service::*;
 use repository::*;
+use dto::*;
 
 #[macro_use]
 extern crate diesel;
 extern crate dotenv;
 
 #[post("/user/add", data = "<user>")]
-fn user_add(user: Json<User>) {
+fn user_add(user: Json<UserDto>) {
     build_user_controller(build_user_service(build_user_repository())).user_add(user)
 }
 

@@ -1,4 +1,4 @@
-use crate::model::*;
+use crate::dto::*;
 use crate::service::*;
 use rocket_contrib::json::Json;
 
@@ -13,7 +13,7 @@ pub fn build_user_controller(service: UserService) -> UserController{
 }
 
 impl UserController {
-    pub fn user_add(&self,user: Json<User>) {
-        self.service.add_user(user)
+    pub fn user_add(&self,user: Json<UserDto>) {
+        self.service.add_user(user.into_inner())
     }
 }
